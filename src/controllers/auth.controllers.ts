@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import User from '../models/user.model';
 import bodyParser from 'body-parser';
 import express from 'express';
+import generateId from '../utils/generateId';
 dotenv.config();
 
 const JWT_secret = process.env.JWT_SECRET;
@@ -23,7 +24,7 @@ export const signup = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const uid = (new Date().getTime()).toString(36);
+        const uid = generateId();
 
         const newUser = new User({
         id: uid,
