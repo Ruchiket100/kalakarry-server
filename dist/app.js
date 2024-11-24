@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 //routes
 const auth_1 = __importDefault(require("./routes/auth"));
 const collection_1 = __importDefault(require("./routes/collection"));
+const artpiece_1 = __importDefault(require("./routes/artpiece"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const auth_2 = require("./middlewares/auth");
 dotenv_1.default.config();
@@ -23,6 +24,7 @@ app.use(auth_2.authMiddleware);
 app.get("/protected", (req, res) => res.send({ success: true, user: req === null || req === void 0 ? void 0 : req.user }));
 app.use("/auth", auth_1.default);
 app.use("/collection", collection_1.default);
+app.use("/artpiece", artpiece_1.default);
 app.listen(port, () => {
     return console.log(`🚀 Express is listening at http://localhost:${port}`);
 });

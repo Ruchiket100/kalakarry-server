@@ -9,7 +9,13 @@ const artpieceSchema = new Schema<artpieceType>({
     description: { type: String, required: true },
     image: { type: String, required: true },
     collection: { type: String, ref: 'Collection', required: true },
-});
+    count: {
+        likes: { type: Number, required: true, default: 0 },
+        comments: { type: Number, required: true, default: 0 }
+    },
+    likes: { type: Number, required: true, default: 0 },
+    comments: {type :[{type: String, ref: "Comments"}], required: false}
+})
 
 const Artpiece = model<artpieceType>('Artpiece', artpieceSchema);
 

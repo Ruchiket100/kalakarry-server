@@ -19,6 +19,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const express_1 = __importDefault(require("express"));
+const generateId_1 = __importDefault(require("../utils/generateId"));
 dotenv_1.default.config();
 const JWT_secret = process.env.JWT_SECRET;
 (0, express_1.default)().use(body_parser_1.default.json());
@@ -33,7 +34,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(400).json({ message: 'user already exists.' });
         }
         const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
-        const uid = (new Date().getTime()).toString(36);
+        const uid = (0, generateId_1.default)();
         const newUser = new user_model_1.default({
             id: uid,
             name,
