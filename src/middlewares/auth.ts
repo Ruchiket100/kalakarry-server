@@ -2,6 +2,10 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken'; 
 import User from '../models/user.model'; 
 
+interface CustomRequest extends Request {
+  user?: any; // Replace `any` with the actual user type if known
+}
+
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const publicRoutes = ['/auth/login', '/auth/register']; 
 
@@ -18,14 +22,15 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     const userId = (decoded as any).id;
+    console.log("decoded", decoded)
+    console.log("userId", userId)
 
     const user = await User.findOne({id: userId});
+
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
-    
-    (req as any).user = user;
-
+    (req as CustomRequest).user = user;
     next();
   } catch (err) {
     return res.status(401).json({ error: 'Invalid authentication token' });

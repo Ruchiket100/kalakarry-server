@@ -28,7 +28,7 @@ const userSchema = new mongoose_1.Schema({
     id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true },
-    collections: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Collection', required: false },
+    collections: { type: [{ type: String, ref: "Collection" }], required: false },
     email: { type: String, required: true, unique: true },
     collection_count: { type: Number, required: false },
     following_count: { type: Number, required: false },

@@ -8,8 +8,7 @@ const collectionSchema = new mongoose.Schema<collectionType>({
     user: { type: String, ref: "User", required: true },
     description: { type: String, required: true },
     artpieces: { type: [{type: String, ref: "Artpiece"}], required: false },
-});
-
+}, {timestamps: true});
 
 const Collection = mongoose.model<collectionType>('Collection', collectionSchema);
 

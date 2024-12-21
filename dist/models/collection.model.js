@@ -11,7 +11,7 @@ const collectionSchema = new mongoose_1.default.Schema({
     user: { type: String, ref: "User", required: true },
     description: { type: String, required: true },
     artpieces: { type: [{ type: String, ref: "Artpiece" }], required: false },
-});
+}, { timestamps: true });
 const Collection = mongoose_1.default.model('Collection', collectionSchema);
 exports.default = Collection;
 //# sourceMappingURL=collection.model.js.map

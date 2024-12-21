@@ -8,6 +8,7 @@ import cors from "cors"
 import authRoutes from "./routes/auth"
 import collectionRoutes from "./routes/collection"
 import artpieceRoutes from "./routes/artpiece"
+import userRoutes from "./routes/user"
 
 import dotenv from 'dotenv';
 import { authMiddleware } from './middlewares/auth';
@@ -29,6 +30,7 @@ app.get("/protected", (req, res) => res.send({success: true, user: req?.user as 
 app.use("/auth", authRoutes);
 app.use("/collection", collectionRoutes);
 app.use("/artpiece", artpieceRoutes)
+app.use("/user", userRoutes)
 
 
 app.listen(port, () => {
