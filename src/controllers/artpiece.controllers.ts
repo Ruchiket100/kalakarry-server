@@ -21,6 +21,7 @@ export const createArtpiece = async (req, res) => {
             description,
             image,
             collection: collectionId,
+            user: req.user.id
         });
 
         res.status(201).json({ message: 'artpiece created successfully.', data:  {...artpiece, collection: collection} });

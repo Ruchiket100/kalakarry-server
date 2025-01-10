@@ -22,8 +22,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     const userId = (decoded as any).id;
-    console.log("decoded", decoded)
-    console.log("userId", userId)
 
     const user = await User.findOne({id: userId});
 

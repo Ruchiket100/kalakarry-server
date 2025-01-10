@@ -17,4 +17,4 @@ const userSchema = z.object({
     setting_up: z.boolean()
 });
 
-export type userType = z.infer<typeof userSchema>;
+export type UserType = z.infer<typeof userSchema>;

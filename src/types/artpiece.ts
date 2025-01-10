@@ -9,6 +9,7 @@ export const artpieceSchema = z.object({
     collection: z.string(),
     count: z.object({likes: z.number(), comments: z.number()}).default({likes: 0, comments: 0}),
     likes: z.number().default(0),
+    user: z.string(),
     comments: z.array(z.string()).optional()
     });
 
