@@ -68,7 +68,7 @@ export const login = async (req, res) => {
         return res.status(500).json({ message: err.message });
     }
 }
-
+// HELLO WORLD
 const generateToken = (user) => {
     return jwt.sign({ id: user.id, email: user.email }, JWT_secret, { expiresIn: '9999d' });
 }
